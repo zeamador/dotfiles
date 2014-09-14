@@ -6,19 +6,19 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible " stops vim from doing stupid vi bullshit
+set nocompatible
 
 set autoindent
-set smartindent " makes vim be less retarded about indenting
+set smartindent " smart indentation
 
 set ignorecase " do case-insensitive search by default
 set smartcase " do case-sensitive search if search query has capitals
 
-set tabstop=8
-set shiftwidth=8 " makes vim stop making such fucking huge tabs
-"set expandtab " makes vim stop using those stupid goddamn tab characters
+set tabstop=4
+set shiftwidth=4
+"set expandtab " tab characters must die
 
-set backspace=2 " make backspace stop fucking up
+set backspace=2 " make backspace work
 
 autocmd! bufwritepost vimrc source ~/.vimrc " reload vimrc when it's edited
 
