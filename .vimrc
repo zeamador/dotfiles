@@ -6,21 +6,19 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" stops vim from doing vi bullshit
-set nocompatible 
+set nocompatible " stops vim from doing stupid vi bullshit
 
-" makes vim be less braindead about indenting
 set autoindent
-set smartindent 
+set smartindent " makes vim be less retarded about indenting
 
-" do case-insensitive search by default
-set smartcase 
+set ignorecase " do case-insensitive search by default
+set smartcase " do case-sensitive search if search query has capitals
 
-set tabstop=2
-set shiftwidth=2 " set indent width
-set expandtab " tab characters are an agent of satan
+set tabstop=8
+set shiftwidth=8 " makes vim stop making such fucking huge tabs
+"set expandtab " makes vim stop using those stupid goddamn tab characters
 
-set backspace=2 " make backspace work right
+set backspace=2 " make backspace stop fucking up
 
 autocmd! bufwritepost vimrc source ~/.vimrc " reload vimrc when it's edited
 
@@ -29,10 +27,10 @@ autocmd! bufwritepost vimrc source ~/.vimrc " reload vimrc when it's edited
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number " shows line numbers
 set ruler " forces vim to show cursor location
-" set cursorline " underlines the current line
+set cursorline " underlines the current line
 set showmatch " makes vim jump cursor to bracket match
 
-set whichwrap=b,s,h,l,<,>,~,[,] " set wrapping for navigation
+set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
 "             | | | | | | | | |
 "             | | | | | | | | +-- "]" Insert and Replace
 "             | | | | | | | +-- "[" Insert and Replace
@@ -43,6 +41,9 @@ set whichwrap=b,s,h,l,<,>,~,[,] " set wrapping for navigation
 "             | | +-- "h" Normal and Visual (not recommended)
 "             | +-- <Space> Normal and Visual
 "             +-- <BS> Normal and Visual
+
+" Always display filename
+set laststatus=2
 
 syntax on " makes vim color things
 
