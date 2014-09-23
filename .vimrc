@@ -50,6 +50,9 @@ syntax on " makes vim color things
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable pathogen
+execute pathogen#infect()
+
 let xml_use_xhtml = 1 " Makes the xml plugin autocomplete short html tags correctly
 filetype plugin on " Turns on filetype plugins
 
