@@ -1,26 +1,67 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Zachary Amador's .vimrc
+" Zach Amador's .vimrc
 " zach.amador@gmail.com
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle Stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'Valloric/YouCompleteMe'
+" The following are examples of different formats supported.
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-
 set autoindent
-set smartindent " smart indentation
+set smartindent
 
-set ignorecase " do case-insensitive search by default
-set smartcase " do case-sensitive search if search query has capitals
+set smartcase
 
 set tabstop=4
 set shiftwidth=4
-"set expandtab " tab characters must die
+set expandtab " tabs are satan
 
-set backspace=2 " make backspace work
+set backspace=2 " fix backspace
+
+syntax enable " enable syntax hilighting
+
+" enable word wrapping
+set wrap
+set linebreak
+set nolist
+set textwidth=0
+set wrapmargin=0
 
 autocmd! bufwritepost vimrc source ~/.vimrc " reload vimrc when it's edited
+
+set tags=tags; " look in parent dirs for tags file
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User Interface
@@ -42,19 +83,51 @@ set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
 "             | +-- <Space> Normal and Visual
 "             +-- <BS> Normal and Visual
 
-" Always display filename
-set laststatus=2
 
-syntax on " makes vim color things
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Filetype Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open all .md files as markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable pathogen
-execute pathogen#infect()
+call pathogen#infect()
 
 let xml_use_xhtml = 1 " Makes the xml plugin autocomplete short html tags correctly
-filetype plugin on " Turns on filetype plugins
+filetype plugin indent on " Turns on filetype plugins
 
-nmap <F8> :TagbarToggle<CR> " Map F8 to toggle tagbar
+" Map F8 to toggle tagbar
+nmap <F8> :TagbarToggle<CR>
 
+" Go tagbar settings
+let g:tagbar_type_go = {
+  \ 'ctagstype' : 'go',
+  \ 'kinds'     : [
+    \ 'p:package',
+    \ 'i:imports:1',
+    \ 'c:constants',
+    \ 'v:variables',
+    \ 't:types',
+    \ 'n:interfaces',
+    \ 'w:fields',
+    \ 'e:embedded',
+    \ 'm:methods',
+    \ 'r:constructor',
+    \ 'f:functions'
+  \ ],
+  \ 'sro' : '.',
+  \ 'kind2scope' : {
+    \ 't' : 'ctype',
+    \ 'n' : 'ntype'
+  \ },
+  \ 'scope2kind' : {
+    \ 'ctype' : 't',
+    \ 'ntype' : 'n'
+  \ },
+  \ 'ctagsbin'  : 'gotags',
+  \ 'ctagsargs' : '-sort -silent'
+\ }
